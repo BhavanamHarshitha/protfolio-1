@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
+    <style>
+            body {
+                background-image: url("https://s3.amazonaws.com/codementor_content/2015-Aug-week3/portfolio.jpg");
+                background-color: black;
+                background-repeat: no-repeat;
+                background-size:contain;
+                color: white;
+            }
+            .nav ul{
+                list-style-type: none;
+                margin: 0 20px;
+                padding: 30px 20px;
+                text-align: right;
+            }
+            .nav ul li{
+                display: inline-block;
+            }
+            .nav ul li a{
+                padding: 4px;
+                margin: 10px 20px;
+                color: rgb(249, 241, 241);
+                font-size: 25px;
+                text-decoration: none;
+                position: relative;
+            }
+            .nav ul li a::after{
+                content: '';
+                width:0;
+                height: 3px;
+                background: #f3eeee;
+                position: absolute;
+                left: 0;
+                bottom: -6px;
+                transition: 0.5s;
+            }
+            .nav ul li a:hover::after{
+                width: 100%;
+            }
+            .header-text h1{
+                margin-top: 13%;
+                font-size: 70px;
+                color: #222; /* Changed to dark for better contrast */
+                margin-left: 10%;
+            }
+            .header-text h2{
+                font-size: 50px;
+                color: #222;
+                margin-left: 10%;
+            }
+            .header-text h2 span{
+                color: #101010;
+            }
+            .header-text h1 span{
+                color: #da0c0c;
+            }
+            .header-text p{
+                font-size: 40px;
+                color: #222;
+                margin-top: -2%;
+                margin-left: 10%;
+            }
+            #about{
+                padding-bottom: 30px; /* Reduced excessive padding */
+                color: #021216;
+                background: rgba(255,255,255,0.85); /* Light background for About section */
+                border-radius: 16px;
+                margin: 1px ;
+                background-size: cover; /* Add this line for background size */
+            }  
+            .about-col-2 h1,
+            .about-col-2 p {
+                color: #222 !important; /* Ensure text is readable on light background */
+            }
+            #projects {
+                padding: 4% 0;
+                color: #021216;
+                background: rgba(255,255,255,0.85); /* Light background for Projects section */
+                border-radius: 16px;
+                margin: 40px 0;
+            }
+            .project-col-2 h2,
+            .project-col-2 h3,
+            .project-col-2 p {
+                color: #222 !important;
+            }
+            #certifications {
+                padding: 4% 0;
+                color: #021216;
+                background: rgba(255,255,255,0.85); /* Light background for Certifications section */
+                border-radius: 16px;
+                margin: 40px 0;
+            }
+            .certifications-left h2,
+            .certifications-left p {
+                color: #222 !important;
+            padding-top: 20px;
+            padding-right:100px;
+                font-size: 22px !important; /* Increased font size further */
+
+            }
+            #skills {
+                padding: 4% 0;
+                color: #021216;
+                background: rgba(255,255,255,0.85); /* Light background for Skills section */
+                border-radius: 16px;
+                margin: 40px 0;
+            }
+            .skills-col-1,
+            #skills ul,
+            #skills li,
+            #skills span {
+                color: #222 !important;
+            }
+            /* Add light background for Contact section */
+            #contact {
+                padding: 4% 0;
+                color: #021216;
+                background: rgba(255,255,255,0.85); /* Light background for Contact section */
+                border-radius: 16px;
+                margin: 40px 0;
+            }
+            .contact-left h1,
+            .contact-left p,
+            .contact-left a,
+            .contact-right input,
+            .contact-right textarea,
+            .contact-right button {
+                color: #222 !important;
+            }
+            .row{
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+            }
+            .about-col-1{
+                flex-basis: 35%;
+            }
+            .about-col-1 img{
+                width: 80%;          
+                border-radius: 15px;
+                margin-left: 5%;
+                padding-top: 30px;
+                padding-left: 40px;
+            }
+            .about-col-2{
+                text-align: center;
+                flex-basis: 60%;
+                padding-top: 60px;
+
+            }
+            
+            #project{
+                padding: 40% 0;
+                color: rgb(247, 245, 245);
+            }
+            .row{
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+            }
+            .project-col-1{
+                flex-basis: 35%;
+            }
+            .project-col-1 img{
+                width: 100%;
+                border-radius: 15px;
+                margin-left: 5%;
+                padding-top: 10px;
+                padding-bottom:10px;
+            }
+            .project-col-2{
+                flex-basis: 60%;
+            }
+            .tab-titles{
+                display: flex;
+                margin: 20px 0 40px;
+            }
+            .tab-links{
+                font-size:25px;
+                color: white;
+                margin-right: 50px;
+                font-weight: 500;
+                cursor: pointer;
+                position: relative;
+            }
+            .tab-links::after{
+                content: '';
+                width: 0;
+                height: 3px;
+                background-color: #3f83db;
+                position: absolute;
+                left: 0;
+                bottom: -6px;
+                transition: 0.5s;
+            }
+            .tab-links.active-link::after{
+                width: 50%;
+            }
+            .tab-contents ul li{
+                color: white;
+                font-size: 20px;
+                margin: 10px 0;
+                list-style-type:none;
+            }
+            .tab-contents ul li span{
+                color: #3f83db;
+            }
+            .tab-contents {
+                display: none;
+            }
+            .tab-contents.active-tab{
+                display: block;
+            }
+            .certifications-col-1{
+                flex-basis: 20%;
+            }
+            .certifications-col-1 img{
+                width: 200%;
+                border-radius: 10px;
+                margin-left: 30%;
+            }
+            .certifications-left{
+            flex-basis: 35%;
+            margin-top: 30px;
+        
+            }
+            .certifications-right{
+            flex-basis: 60%;
+            padding: 1% 0;
+            font-size: 25px;
+            }
+
+            .skills{
+                padding: 4% 0;
+                color: white;
+            }
+            .contact-left{
+                flex-basis: 35%;
+                margin-left: 5%;
+            }
+            .contact-right{
+                flex-basis: 60%;
+            }
+            .contact-left p{
+                margin-top: 30px;
+            }
+            .contact-left p i{
+                color:#3f83db;
+                margin-right: 15px;
+                font-size: 25px;
+            }
+            .social-icons{
+                margin-top: 30px;
+            }
+            .social-icons a{
+                text-decoration: none;
+                font-size: 30px;
+                margin-right: 15px;
+                color:#ababab;
+                display: inline-block;
+                transition: transform 0.5s;
+            }
+            .social-icons a:hover{
+                color: #3f83db;
+                transform: translateY(-5px);
+            }
+            .btn{
+                display: block;
+                margin: 50px auto;
+                width:fit-content;
+                border:1px solid white;
+                padding: 14px 50px;
+                text-decoration: none;
+                color: white;
+                border-radius: 5px;
+                transition: background 0.5s;
+            }
+            .btn:hover{
+                background: #3f83db;
+            }
+            .btn.btn2{
+                display: inline-block;
+                background:  #3f83db;
+            }
+            form  input, form textarea{
+                width:90%;
+                border:0;
+                outline: none;
+                background: #fff; /* White background for input fields */
+                padding: 15px;
+                margin: 15px 0;
+                color: #222; /* Dark text for input fields */
+                font-size: 20px;
+                border-radius: 5px;
+                box-sizing: border-box;
+            }
+            form .btn2{
+                padding: 14px 60px;
+                font-size: 20px;
+                margin-top: 20px;
+                cursor: pointer;
+            }
+            
+            .portfolio-left img{
+            width: 550px;
+            height: 315px;
+            border-radius: 15px;
+            margin-left: 5%;
+        }
+        .portfolio-left{
+            flex-basis: 35%;
+            margin-top: 30px;
+        }
+        .portfolio-right{
+            flex-basis: 60%;
+            padding: 1% 0;
+            font-size: 25px;
+        }
+            .skills-list-row {
+                display: flex;
+                justify-content: space-between;
+                gap: 30px;
+                flex-wrap: wrap;
+                margin-top: 30px;
+            }
+            .skills-list-col {
+                flex: 1 1 200px;
+                background: rgba(255,255,255,0.7);
+                border-radius: 10px;
+                padding: 20px;
+                margin: 0 10px;
+                min-width: 200px;
+                box-sizing: border-box;
+            }
+            .skills-list-col span {
+                font-weight: bold;
+                font-size: 20px;
+                color: #3f83db !important;
+            }
+            .skills-list-col ul {
+                padding-left: 18px;
+                margin: 10px 0 0 0;
+                color: #222 !important;
+                font-size: 18px;
+                list-style-type: disc;
+            }
+            @media (max-width: 900px) {
+                .skills-list-row {
+                    flex-direction: column;
+                    gap: 10px;
+                }
+                .skills-list-col {
+                    margin: 10px 0;
+                }
+            }
+          </style>
+</head>
+<body>
+    <div class="nav">
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#certifications">Certifications</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact" >Contact</a></li>
+    </ul>
+</div>
+    <div class="header-text">
+        <h1>Hey there, I'm <span>Bhavanam Harshitha</span></h1>
+        <p><b>A Student</b></p>
+    </div>
+    <h1 style="font-size: 45px;text-align: center;color:rgb(2, 2, 2);">About Me</h1>
+    <section id="about">
+        <div class="container">
+            <div class="row">
+                <div class="about-col-1">
+                    <img src="harshi.jpg" alt="Harshitha's photo">
+                </div>
+                <div class="about-col-2">
+                    <p style="font-size: 30px; text-align: center;">
+                        I'm Bhavanam Harshitha, a final year B.Tech CSE (AI & ML) student at KIET. I am passionate about programming, problem-solving, and modern technologies.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <h1 style="font-size: 45px;text-align: center;">Projects</h1>
+    <section id="projects">
+        <div class="container">
+            <div class="row">
+                <div class="project-col-1">
+                    <img src="image.png" alt="Project preview">
+                </div>
+                <div class="project-col-2">   
+                    <h2>This is my project</h2>
+                    <div class="project">
+        <h3>Image Super-Resolution</h3>
+        <p style="font-size:20px;"Image super-resolution using GANs to enhance image clarity and detail.><br>This project enhances the quality of low-resolution images using ESRGAN
+    (Enhanced Super-Resolution Generative Adversarial Network).<br> It sharpens blurred images and adds realistic textures using AI. <br>It can be applied to fields like satellite imaging, medical imaging, and old photo restoration.</p>
+        </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <h1 style="font-size: 45px;text-align: center;">Certifications</h1>
+    <section id="certifications">
+        <div class="container">
+            <div class="row">
+                <div class="certifications-col-1">
+                    <img src="fmml harshi .jpg" alt="FMML Certificate">
+                </div>
+                <div class="certifications-left">
+                    <h2>FMML Certificate</h2>
+                    <p>
+                    This is my FMML Certificate.<br>
+                     In which I learned briefly about the courses of Machine Learning like basics of ML and, ML algorithms.
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="certifications-col-1">
+                    <img src="edunet foundation.jpg" alt="Edunet Foundation Certificate">
+                </div>
+                <div class="certifications-left">
+                    <h2>Edunet Foundation</h2>
+                    <p>
+                        This is my Edunet Foundation Certificate.<br>
+                        In which I learned briefly about the courses of Machine Learning and Deep Learning, including basics of ML,and ML algorithms, DL, and DL algorithms.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <h1 style="font-size: 45px;text-align:center;">Skills</h1>
+    <section id="skills">
+        <div class="container">
+            <div class="skills-list-row">
+                <div class="skills-list-col">
+                    <span>Technical Skills</span>
+                    <ul>
+                        <li>C Language</li>
+                        <li>Python</li>
+                        <li>HTML</li>
+                        <li>CSS</li>
+                        <li>MySQL</li>
+                        <li>Machine Learning</li>
+                    </ul>
+                </div>
+                <div class="skills-list-col">
+                    <span>Tools</span>
+                    <ul>
+                        <li>GitHub</li>
+                        <li>Visual Studio Code</li>
+                        <li>MySQL Work bench</li>
+                        <li>Google Colab</li>
+                    </ul>
+                </div>
+                <div class="skills-list-col">
+                    <span>Non-Technical Skills</span>
+                    <ul>
+                        <li>Communication Skills</li>
+                        <li>Team Collaboration</li>
+                        <li>Team Lead</li>
+                        <li>Presentation Skills</li>
+                        <li>Problem Solving</li>
+                    </ul>
+                </div>
+                <div class="skills-list-col">
+                    <span>Interests</span>
+                    <ul>
+                        <li>Machine Learning</li>
+                        <li>Web Development</li>
+                        <li>Fullstack</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+        <h1 style="font-size: 45px;text-align:center;">Contact</h1>
+    <section id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="contact-left">
+                    <h1 class="sub-title">Contact Me</h1>
+                    <p><i class="fas fa-envelope"></i><a href="mailto:harshithareddybhavanam@gmail.com">harshithareddybhavanam@gmail.com</a></p>
+                    <p><i class="fas fa-phone"></i><a href="tel:7569474055">7569474055</a></p>
+                    <div class="social-icons">
+                        <a href="https://www.instagram.com/_its_me_harshi08" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/bhavanam-h-747534255" target="_blank">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://github.com/BhavanamHarshitha" target="_blank">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="contact-right">
+                    <form>
+                        <input type="text" name="Name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="Your Email" required>
+                        <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
+                        <button type="submit" class="btn btn2">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        var tablinks = document.getElementsByClassName("tab-links");
+        var tabcontents = document.getElementsByClassName("tab-contents");
+        function opentab(tabname){
+            for(tablink of tablinks){
+                tablink.classList.remove("active-link");
+            }
+            for(tabcontent of tabcontents){
+                tabcontent.classList.remove("active-tab");
+            }
+            event.currentTarget.classList.add("active-link");
+            document.getElementById(tabname).classList.add("active-tab");
+        }
+    </script>
+</body>
+</html>
